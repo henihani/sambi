@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+
+class CategoryController extends Controller
+{
+    protected function validator(array $user)
+    {
+        return Validator::make($category, [
+            'kategori' => ['required', 'string', 'max:2000'],
+            'nomor_kategori' => ['required', 'string', 'max:255', 'unique:categories']
+        ]);
+    }
+    public function index()
+    {
+        
+        $categories = Category::all();
+        return view ('layouts.category.index', compact('categories','categories'));
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        
+        return view ('layouts.category.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $category = new Category([
+            'kategori' => ucwords($request->get('kategori')),
+            'nomor_kategori' => $request->get('nomor_kategori')
+            ]);
+        $category->save();
+        return redirect('category')->with('success','Kategori baru berhasil ditambahkan!');
+        
+        
+    }
+
+    
+    public function show(Category $category)
+    {
+        //
+    }
+
+    
+
+    public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('layouts.category.edit', compact('category'));
+    }
+
+    
+    public function update(Request $request, $id)
+    {
+        $update = Category::findOrFail($id);
+        $update->update([
+            'kategori' => ucwords($request->get('kategori')),
+            'nomor_kategori' => $request->get('nomor_kategori')
+        ]);
+            
+       return redirect('category')->with('update','Data kategori berhasil diperbarui!');   
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $del = Category::find($id);
+        $del->delete();
+        return back()->with('delete', 'Kategori berhasil dihapus');
+    }   
+}
+
+
+
