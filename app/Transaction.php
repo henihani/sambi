@@ -28,4 +28,8 @@ class Transaction extends Model
     {
         return $this->belongsTo('App\Member');
     }
+    public function statues()
+    {
+        return $this->belongsTo('App\Status');
+    }
 }

@@ -44,8 +44,7 @@
                     <th>No</th>
                     <th>Kategori</th>
                     <th>Nomor Kategori</th>
-                    <th>Edit</th>
-                    <th>Hapus</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -55,16 +54,28 @@
                     <td>{{$category->kategori}}</td>
                     <td>{{$category->nomor_kategori}}</td>
                     <td>
-                      <a href="{{ route('category.edit',$category->id) }}">
-                        <button class="btn btn-primary" type="submit" name="delete">Edit</button>
-                      </a>
-                    </td>
-                    <td>
-                      <form action="{{ route('category.destroy',$category->id ) }}" method="POST">
-                        @csrf
-                        <button class="btn btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus kategori {{$category->kategori}}')">Hapus</button>
-                        <input type="hidden" name="_method" value="delete" >
-                      </form>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                          Action &nbsp;
+                          <span class="caret"></span>
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="{{ route('category.edit',$category->id) }}"><i class="fa fa-edit">&nbsp; Edit</i></a></li>
+                          <li class="divider"></li>
+                          <li>
+                            <a href="">
+                              <form action="{{ route('category.destroy',$category->id ) }}" method="POST">
+                                @csrf
+                                <button class="btn btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus kategori {{$category->kategori}}')">
+                                  <i class="fa fa-trash">&nbsp; Hapus</i>
+                                </button>
+                                <input type="hidden" name="_method" value="delete" >
+                              </form>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </td>
                   </tr>  
                 @endforeach 
@@ -74,8 +85,7 @@
                     <th>No</th>
                     <th>Kategori</th>
                     <th>Nomor Kategori</th>
-                    <th>Edit</th>    
-                    <th>Hapus</th>
+                    <th>Aksi</th>
                   </tr>
                 </tfoot>
               </table>

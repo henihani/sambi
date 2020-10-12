@@ -18,18 +18,28 @@ class BookSeeder extends Seeder
         $faker = Faker::create();
         for($i=0; $i<10; $i++)
         { 
-            DB::table('members')->insert([ 
-                'nomor_anggota' => $faker->unique()->numberBetween($min = 1, $max = 50), 
-                'nama'=> $faker->name,
-                'nomor_identitas' => $faker->unique()->randomDigit(10),
-                'jabatan' => $faker->randomElement(['Guru','Siswa']),
-                'jurusan_gurumapel' => $faker->name,
+            DB::table('books')->insert([ 
+                'inventaris' => $faker->unique()->name, 
+                'tanggal_terima'=> $faker->dateTime,
+                'judul' => $faker->name,
+                'pengarang' => $faker->randomElement(['Butet','Andrea']),
+                'penerbit' => $faker->name,
+                'tahun_terbit' => $faker->randomElement(['2001','2019','2020','2004']),
+                'semester' => $faker->randomElement(['Genap','Ganjil']),
                 'kelas' => $faker->randomElement(['X','XI','XII','-']),
-                'jenis_kelamin' => $faker->randomElement(['Laki-laki','Perempuan']),
-                'tempat_lahir' => $faker->country,
-                'tanggal_lahir' => $faker->dateTimeBetween('1970-01-01', '2019-12-31')->format('Y-m-d H:i:s'),
-                'alamat' => $faker->country
+                'asal' => $faker->name,
+                'harga' => $faker->name,
+                'isbn' => $faker->randomDigit(20),
+                'callnumber' => $faker->randomDigit(20),
+                'lokasi' => $faker->name,
+                'deskripsi'=> $faker->name,
+                'sampul' => $faker->imageUrl($width = 120, $heigh=160),
+                'categories_id' => $faker->randomDigitNot(0)
+
             ]);
+
+            
+
         }
     }
 }

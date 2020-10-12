@@ -51,11 +51,10 @@
               </div>
             @endif
             @if (session('delete'))
-            <div class="alert alert-danger" role="alert">
-            {{ session('delete') }}
-            </div>
+              <div class="alert alert-danger" role="alert">
+              {{ session('delete') }}
+              </div>
             @endif
-
               <div class="table-responsive" style="overflow: auto">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -65,35 +64,41 @@
                       <th>Nomor Anggota</th>
                       <th>Jurusan</th>
                       <th>Kelas</th>
-                      <th>Detail</th>
-                      <th>Edit</th>
-                      <th>Hapus</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
+                  @foreach ($members as $member)
                     <tr>
-                    @foreach ($members as $member)
                       <td>{{$loop->iteration}}</td>
                       <td>{{$member->nama}}</td>
                       <td>{{$member->nomor_anggota}}</td>
                       <td>{{$member->jurusan_gurumapel}}</td>
                       <td>{{$member->kelas}}</td>
                       <td>
-                        <a href="{{route('member.show', $member->id)}}">
-                          <button class="btn btn-block btn-warning" type="submit" name="">Detail</button>
-                        </a>
-                      </td>
-                      <td>
-                        <a href="{{ route('member.edit',$member->id) }}">
-                          <button class="btn btn-block btn-primary" type="submit" name="delete">Edit</button>
-                        </a>
-                      </td>
-                      <td>
-                        <form action="{{ route('member.destroy', $member->id) }}" method="POST">
-                        @csrf
-                          <button class="btn btn-block btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan nama {{$member->nama}}')">Hapus</button>
-                          <input type="hidden" name="_method" value="delete" >
-                        </form>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Action &nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{route('member.show', $member->id)}}"><i class="fa fa-folder-open">&nbsp; Detail</i></a></li>
+                            <li><a href="{{ route('member.edit',$member->id) }}"><i class="fa fa-edit">&nbsp; Edit</i></a></li>
+                            <li class="divider"></li>
+                            <li>
+                              <a href="">
+                                <form action="{{ route('member.destroy', $member->id) }}" method="POST">
+                                @csrf
+                                  <button class="btn btn-block btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan nama {{$member->nama}}')">
+                                    <i class="fa fa-trash">&nbsp; Hapus</i>
+                                  </button>
+                                  <input type="hidden" name="_method" value="delete" >
+                                </form>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
                       </td>
                     </tr>
                     @endforeach
@@ -105,9 +110,7 @@
                       <th>Nomor Anggota</th>
                       <th>Jurusan</th>
                       <th>Kelas</th>
-                      <th>Detail</th>
-                      <th>Edit</th>
-                      <th>Hapus</th>
+                      <th>Aksi</th>
                     </tr>
                   </tfoot>
                 </table>

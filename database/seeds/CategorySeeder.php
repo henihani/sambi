@@ -16,8 +16,8 @@ class CategorySeeder extends Seeder
         for($i=0; $i<10; $i++)
         { 
             DB::table('categories')->insert([ 
-                'kategori' => $faker->unique()->name, 
-                'nomor_kategori'=> $faker->randomDigit(10)
+                'kategori' => $faker->name, 
+                'nomor_kategori'=> $faker->unique()->randomDigit(10)
             ]);
         }
     }

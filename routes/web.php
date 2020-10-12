@@ -50,6 +50,10 @@ Route::get('transactionReport','TransactionController@transactionReport');
 //CARD
 Route::resource('card','CardController');
 
+//PENCARIAN
+Route::get('/pencarian', 'PencarianController@index');
+Route::get('/pencarian/cari', 'PencarianController@cari');
+
 
 
 

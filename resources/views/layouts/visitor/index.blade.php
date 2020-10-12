@@ -38,8 +38,7 @@
                       <th>Tanggal Kunjungan</th>
                       <th>Nomor Identitas</th>
                       <th>Nama</th>
-                      <th>Detail</th>
-                      <th>Hapus</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -50,16 +49,26 @@
                         <td>{{ $visitor->members->nomor_identitas}}</td>
                         <td>{{ $visitor->members->nama}}</td>
                         <td>
-                          <a href="{{route('visitor.show', $visitor->id)}}"> 
-                          <button class="btn btn-block btn-warning" type="submit" name="" >Detail</button>
-                          </a>
-                        </td>
-                        <td>
-                          <form action="{{ route('visitor.destroy', $visitor->id) }}" method="POST">
-                          @csrf
-                            <button class="btn btn-block btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan nama {{$visitor->nama}}')">Hapus</button>
-                            <input type="hidden" name="_method" value="delete" >
-                          </form>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                              Action &nbsp;
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="{{route('visitor.show', $visitor->id)}}"><i class="fa fa-folder-open">&nbsp; Detail</i></a></li>
+                              <li class="divider"></li>
+                              <li><a href="#">
+                                <form action="{{ route('visitor.destroy', $visitor->id) }}" method="POST">
+                                @csrf
+                                  <button class="btn btn-block btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan nama {{$visitor->nama}}')">
+                                    <i class="fa fa-trash">&nbsp; Hapus</i>
+                                  </button>
+                                  <input type="hidden" name="_method" value="delete" >
+                                </form>
+                              </a></li>
+                            </ul>
+                          </div>
                         </td>
                       </tr> 
                     @endforeach
@@ -70,8 +79,7 @@
                       <th>Tanggal Kunjungan</th>
                       <th>Nomor Identitas</th>
                       <th>Nama</th>
-                      <th>Detail</th>
-                      <th>Hapus</th> 
+                      <th>Aksi</th>
                     </tr>
                   </tfoot>
                 </table>

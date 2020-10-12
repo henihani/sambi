@@ -50,10 +50,8 @@
                       <th>Tanggal Peminjaman</th>
                       <th>Tanggal Kembali</th>
                       <th>Denda</th>
-                      <th>Detail</th>
+                      <th>Aksi</th>
                       <th>Status</th>
-                      <th>Pengembalian</th>
-                      <th>Hapus</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -66,9 +64,28 @@
                         <td>{{date('d/m/y', strtotime($transaction->tanggal_kembali))}}</td>
                         <td>{{$transaction->denda}}</td>
                         <td>
-                          <a href="{{route('transaction.show', $transaction->id)}}">
-                          <button class="btn btn-block btn-warning" type="submit" name="">Detail</button>
-                          </a>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                              Action &nbsp;
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="{{route('transaction.show', $transaction->id)}}"><i class="fa fa-folder-open">&nbsp; Detail</i></a></li>
+                              <li><a href="{{ route('transaction.edit',$transaction->id) }}"><i class="fa fa-inbox">&nbsp; Pengembalian</i></a></li>
+                              <li><a href="{{ route('transaction.edit',$transaction->id) }}"><i class="fa fa-inbox">&nbsp; Denda</i></a></li>
+                              <li class="divider"></li>
+                              <li>
+                                <a href="">
+                                  <form action="{{route('transaction.destroy', $transaction->id) }}" method="POST">
+                                  @csrf
+                                    <button class="btn btn-block btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan {{$transaction->members->nomor_identitas}} ')">Hapus</button>
+                                    <input type="hidden" name="_method" value="delete" >
+                                  </form>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
                         </td>
                         <td>
                           @if($transaction->status == 'Pinjam')
@@ -76,18 +93,6 @@
                           @else
                             <label class="btn btn-success btn-xs">Kembali</label>
                           @endif  
-                        </td>
-                        <td>
-                          <a href="{{ route('transaction.edit',$transaction->id) }}">
-                            <button class="btn btn-block btn-default" type="submit" name="">Pengembalian</button>
-                          </a>
-                        </td>
-                        <td>
-                        <form action="{{route('transaction.destroy', $transaction->id) }}" method="POST">
-                        @csrf
-                          <button class="btn btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan {{$transaction->members->nomor_identitas}} ')">Hapus</button>
-                          <input type="hidden" name="_method" value="delete" >
-                        </form>
                         </td>
                       </tr> 
                     @endforeach
@@ -100,10 +105,8 @@
                       <th>Tanggal Peminjaman</th>
                       <th>Tanggal Kembali</th>
                       <th>Denda</th>
-                      <th>Detail</th>
-                      <th>Status</th>
-                      <th>Pengembalian</th>
-                      <th>Hapus</th> 
+                      <th>Aksi</th>
+                      <th>Status</th> 
                     </tr>
                   </tfoot>
                 </table>

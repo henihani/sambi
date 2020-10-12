@@ -66,9 +66,7 @@
                     <th>Pengarang</th>
                     <th>Semester</th> 
                     <th>Kelas</th>
-                    <th>Detail</th>
-                    <th>Edit</th>
-                    <th>Hapus</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -81,22 +79,28 @@
                     <td>{{$book->semester}}</td>
                     <td>{{$book->kelas}}</td>
                     <td>
-                      <a href="{{route('book.show', $book->id)}}">
-                        <button class="btn btn-block btn-warning" type="submit" name="">Detail</button>
-                      </a>  
-                    </td> 
-                    <td>
-                      <a href="{{route('book.edit', $book->id) }}">
-                        <button class="btn btn-block btn-primary" type="submit" name="">Edit</button>
-                      </a>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                          Action &nbsp;
+                          <span class="caret"></span>
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="{{route('book.show', $book->id)}}"><i class="fa fa-folder-open">&nbsp; Detail</i></a></li>
+                          <li><a href="{{route('book.edit', $book->id) }}"><i class="fa fa-edit">&nbsp; Edit</i></a></li>
+                          <li class="divider"></li>
+                          <li>
+                            <a href="">
+                              <form action="{{route('book.destroy', $book->id) }}" method="POST">
+                              @csrf
+                                <button class="btn btn-block btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan {{$book->judul}} ')">Hapus</button>
+                                <input type="hidden" name="_method" value="delete" >
+                              </form>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </td>
-                      <td>
-                        <form action="{{route('book.destroy', $book->id) }}" method="POST">
-                        @csrf
-                          <button class="btn btn-block btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan {{$book->judul}} ')">Hapus</button>
-                          <input type="hidden" name="_method" value="delete" >
-                        </form>
-                      </td>
                   </tr> 
                 @endforeach
                 </tbody>
@@ -108,9 +112,7 @@
                     <th>Pengarang</th>
                     <th>Semester</th> 
                     <th>Kelas</th>
-                    <th>Detail</th>
-                    <th>Edit</th>
-                    <th>Hapus</th>
+                    <th>Aksi</th>
                   </tr>
                 </tfoot>
               </table>

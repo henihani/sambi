@@ -62,7 +62,7 @@ class TransactionController extends Controller
         ]);
 
         $transaction->save();
-        return redirect('transaction')->with('success','Anggota baru berhasil ditambahkan!');
+        return redirect('transaction')->with('success','Transaksi baru berhasil ditambahkan!');
         
     }
 
@@ -90,7 +90,7 @@ class TransactionController extends Controller
         ]);
 
         $update->update(); 
-        return redirect('/transaction')->with('update','Denda berhasil ditambahkan!');
+        return redirect('/transaction')->with('update','Pengembalian buku berhasil');
         
     }
 

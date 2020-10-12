@@ -80,7 +80,15 @@
                   <div class="form-group">
                     <label>Lokasi</label>
                     <input type="text" class="form-control" name="lokasi" value="{{$book->lokasi}}" disabled>
-                  </div>  
+                  </div>
+                  <div class="form-group">
+                    <label>Deskripsi</label>
+                    <input type="text" class="form-control" name="deskripsi" value="{{$book->deskripsi}}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="sampul">Sampul</label>
+                    <img width="120" height="160" src="/image/books/{{ $book->sampul }}"> 
+                  </div> 
                 </div>
               </div>
                   <!-- /.row -->

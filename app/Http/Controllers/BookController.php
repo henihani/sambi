@@ -16,7 +16,7 @@ class BookController extends Controller
         $this->middleware('auth');
     }
     //validasi data
-    protected function validator(array $user)
+    protected function validator(array $books)
     {
         return Validator::make($books,[
         'inventaris' => ['required','unique:books'],
@@ -56,6 +56,12 @@ class BookController extends Controller
     //menyimpan input data
     public function store(Request $request)
     {
+        $request->validate([
+            'sampul' => 'mimes:jpeg,png,jpg|max:2048',
+            ]);
+        $imgName = $request->sampul->getClientOriginalName(). '-'. time()
+                                     . '.' . $request->sampul->extension();
+        $request->sampul->move(public_path('image/books'),$imgName);
 
         $book = New Book([
             'inventaris' => $request->get('inventaris'),
@@ -71,7 +77,9 @@ class BookController extends Controller
             'isbn' => $request->get('isbn'),
             'categories_id' => $request->get('categories_id'),
             'callnumber' => $request->get('callnumber'),
-            'lokasi' => ucwords($request->get('lokasi'))
+            'lokasi' => ucwords($request->get('lokasi')),
+            'deskripsi' => $request->get('deskripsi'),
+            'sampul' => $imgName
         ]);
         
         $book->save();
@@ -114,7 +122,7 @@ class BookController extends Controller
             'categories_id' => $request->get('categories_id'),
             'callnumber' => $request->get('callnumber'),
             'lokasi' => ucwords($request->get('lokasi'))
-               ]);
+            ]);
        $update->update();     
        return redirect('book')->with('update','Data buku berhasil diperbarui!');
     }

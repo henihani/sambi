@@ -21,7 +21,9 @@ class Book extends Model
         'isbn', 
         'categories_id',
         'callnumber', 
-        'lokasi'
+        'lokasi',
+        'deskripsi',
+        'sampul'
     ];
 
     public function categories()
@@ -29,9 +31,12 @@ class Book extends Model
         return $this->belongsTo('App\Category');
     }
     
-
     public function transactions()
     {
         return $this->hasMany('App\Transactions');
+    }
+    public function statues()
+    {
+        return $this->belongsTo('App\Status');
     }
 }
