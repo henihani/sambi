@@ -50,6 +50,7 @@
                       <th>Tanggal Peminjaman</th>
                       <th>Tanggal Kembali</th>
                       <th>Denda</th>
+                      <th>Detail</th>
                       <th>Status</th>
                       <th>Pengembalian</th>
                       <th>Hapus</th>
@@ -59,15 +60,16 @@
                     @foreach($transactions as $transaction)
                       <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>
-                          <a href="{{route('transaction.show', $transaction->id)}}">
-                            {{$transaction->members->nomor_identitas}}
-                          </a>
-                        </td>
+                        <td>{{$transaction->members->nomor_identitas}}</td>
                         <td>{{$transaction->books->isbn}}</td>
                         <td>{{date('d/m/y', strtotime($transaction->tanggal_pinjam))}}</td>
                         <td>{{date('d/m/y', strtotime($transaction->tanggal_kembali))}}</td>
                         <td>{{$transaction->denda}}</td>
+                        <td>
+                          <a href="{{route('transaction.show', $transaction->id)}}">
+                          <button class="btn btn-block btn-warning" type="submit" name="">Detail</button>
+                          </a>
+                        </td>
                         <td>
                           @if($transaction->status == 'Pinjam')
                             <button class="btn btn-warning btn-xs">Pinjam</button>
@@ -77,7 +79,7 @@
                         </td>
                         <td>
                           <a href="{{ route('transaction.edit',$transaction->id) }}">
-                            <button class="btn btn-default" type="submit" name="delete">Pengembalian</button>
+                            <button class="btn btn-block btn-default" type="submit" name="">Pengembalian</button>
                           </a>
                         </td>
                         <td>
@@ -98,6 +100,7 @@
                       <th>Tanggal Peminjaman</th>
                       <th>Tanggal Kembali</th>
                       <th>Denda</th>
+                      <th>Detail</th>
                       <th>Status</th>
                       <th>Pengembalian</th>
                       <th>Hapus</th> 

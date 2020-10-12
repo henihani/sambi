@@ -23,7 +23,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="{{ route('member.store') }}" method="POST">
+            <form action="{{ route('member.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
               <div class="box-body">
               <div class="row">

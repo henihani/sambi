@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('gambar')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->enum('role',['Petugas','Kepala Perpus'])->default('Kepala Perpus');

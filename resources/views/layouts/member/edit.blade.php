@@ -21,7 +21,7 @@
             <h3 class="box-title">Edit Data Anggota</h3>
           </div>
           <!-- form start -->
-          <form action="{{ route('member.update',$members->id) }}" method="POST">
+          <form action="{{ route('member.update',$members->id) }}" method="POST" enctype="multipart/form-data">
           @csrf
           {{ method_field('PUT') }}
             <div class="box-body">
@@ -80,7 +80,8 @@
                   </div>
                   <div class="form-group">
                     <label for="foto">Foto</label>
-                    <input type="file" class="form-control" name="foto">
+                    <img width="120px" height="160" src="/image/members/{{ $members->foto }}"> 
+                    <input type="file" class="form-control" name="foto" >
                   </div>  
                 </div>
               </div>

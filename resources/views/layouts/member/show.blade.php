@@ -21,7 +21,7 @@
             <h3 class="box-title">Detail <b>{{$members->nama}}</b></h3>
           </div>
           <!-- form start -->
-          <form>
+          <form >
             <div class="box-body">
               <div class="row">
                 <div class="col-md-12">
@@ -67,8 +67,9 @@
                   </div>
                   <div class="form-group">
                     <label for="foto">Foto</label>
-                    <input type="text" class="form-control" name="foto" value="{{ $members->foto}}">
-                  </div>  
+                    <img width="120" height="160" src="/image/members/{{ $members->foto }}">      
+                  </div>   
+
                 </div>
               </div>
                   <!-- /.row -->

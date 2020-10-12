@@ -65,6 +65,7 @@
                       <th>Nomor Anggota</th>
                       <th>Jurusan</th>
                       <th>Kelas</th>
+                      <th>Detail</th>
                       <th>Edit</th>
                       <th>Hapus</th>
                     </tr>
@@ -74,22 +75,23 @@
                     @foreach ($members as $member)
                       <td>{{$loop->iteration}}</td>
                       <td>{{$member->nama}}</td>
-                      <td>
-                        <a href="{{route('member.show', $member->id)}}"> 
-                          {{$member->nomor_anggota}}
-                        </a>
-                      </td>
+                      <td>{{$member->nomor_anggota}}</td>
                       <td>{{$member->jurusan_gurumapel}}</td>
                       <td>{{$member->kelas}}</td>
                       <td>
+                        <a href="{{route('member.show', $member->id)}}">
+                          <button class="btn btn-block btn-warning" type="submit" name="">Detail</button>
+                        </a>
+                      </td>
+                      <td>
                         <a href="{{ route('member.edit',$member->id) }}">
-                          <button class="btn btn-primary" type="submit" name="delete">Edit</button>
+                          <button class="btn btn-block btn-primary" type="submit" name="delete">Edit</button>
                         </a>
                       </td>
                       <td>
                         <form action="{{ route('member.destroy', $member->id) }}" method="POST">
                         @csrf
-                          <button class="btn btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan nama {{$member->nama}}')">Hapus</button>
+                          <button class="btn btn-block btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan nama {{$member->nama}}')">Hapus</button>
                           <input type="hidden" name="_method" value="delete" >
                         </form>
                       </td>
@@ -103,6 +105,7 @@
                       <th>Nomor Anggota</th>
                       <th>Jurusan</th>
                       <th>Kelas</th>
+                      <th>Detail</th>
                       <th>Edit</th>
                       <th>Hapus</th>
                     </tr>

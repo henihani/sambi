@@ -38,6 +38,7 @@
                       <th>Tanggal Kunjungan</th>
                       <th>Nomor Identitas</th>
                       <th>Nama</th>
+                      <th>Detail</th>
                       <th>Hapus</th>
                     </tr>
                   </thead>
@@ -45,17 +46,18 @@
                     @foreach($visitors as $visitor)
                       <tr>
                         <td>{{ $loop->iteration}}</td>
-                        <td>{{ $visitor->tanggal_kunjungan}}</td>
+                        <td>{{ date('d/m/y', strtotime($visitor->tanggal_kunjungan))}}</td>
+                        <td>{{ $visitor->members->nomor_identitas}}</td>
+                        <td>{{ $visitor->members->nama}}</td>
                         <td>
-                          <a href="{{route('visitor.show', $visitor->id)}}">
-                            {{ $visitor->members->nomor_identitas}} 
+                          <a href="{{route('visitor.show', $visitor->id)}}"> 
+                          <button class="btn btn-block btn-warning" type="submit" name="" >Detail</button>
                           </a>
                         </td>
-                        <td>{{ $visitor->members->nama}}</td>
                         <td>
                           <form action="{{ route('visitor.destroy', $visitor->id) }}" method="POST">
                           @csrf
-                            <button class="btn btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan nama {{$visitor->nama}}')">Hapus</button>
+                            <button class="btn btn-block btn-danger" type="submit" name="delete" onclick="javascript: return confirm('Hapus data dengan nama {{$visitor->nama}}')">Hapus</button>
                             <input type="hidden" name="_method" value="delete" >
                           </form>
                         </td>
@@ -68,6 +70,7 @@
                       <th>Tanggal Kunjungan</th>
                       <th>Nomor Identitas</th>
                       <th>Nama</th>
+                      <th>Detail</th>
                       <th>Hapus</th> 
                     </tr>
                   </tfoot>

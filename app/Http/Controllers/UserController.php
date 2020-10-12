@@ -9,6 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Session;
 use App\User;
 use Auth;
 
@@ -16,6 +17,10 @@ use Auth;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     // public function __construct()
     // {
     //     $this->middleware('guest');
@@ -45,7 +50,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         
-
         $user = new User([
             'nama' => ucwords($request->get('nama')),
             'email' => $request->get('email'),
@@ -72,6 +76,13 @@ class UserController extends Controller
     
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nama' => 'required',
+            'email'    => 'required',
+            'password' => 'required|confirmed|min:1',
+            //'gambar' => 'required',
+        ]);
+
         $update = User::findOrFail($id);
         $update->update([
             'nama' => ucwords($request->get('nama')),
@@ -86,35 +97,15 @@ class UserController extends Controller
     
     public function destroy($id)
     {
-        $del = User::find($id);
-        $del->delete();
-        return back()->with('delete', 'Data Petugas berhasil dihapus');   
-    }
-
-    public function editProfile()
-    {
         
-        $user = User::find(Auth::id());
-        return view('auth.profile', ['user' => $user]);
+        if(Auth::user()->id != $id) {
+            $del = User::findOrFail($id);
+            $del->delete();
+            Session::flash('delete', 'Berhasil dihapus!');
+        } else {
+            Session::flash('delete', 'Akun anda sendiri tidak bisa dihapus!');
+        }
+        return redirect()->to('user');
     }
-    public function updateProfile(Request $request)
-    {
-        $this->validate($request, [
-            'nama' => 'required',
-            'email'    => 'required',
-            'password' => 'required|confirmed|min:1',
-            'gambar' => 'required',
-        ]);
-
-        $user = User::find(Auth::id());
-
-        $user->nama = request('nama');
-        $user->email = request('email');
-        $user->password = bcrypt(request('password'));
-        $user->gambar = request('gambar');
-        $user->save();
-
-        return redirect('home');
-    }
-    }
+}
 

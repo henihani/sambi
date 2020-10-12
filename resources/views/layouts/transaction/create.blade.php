@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                       <label for="members_id">Nomor Anggota</label>
-                      <select class="form-control" name="members_id" style="width: 100%;">
+                      <select class="form-control select2" name="members_id" style="width: 100%;">
                         @foreach ($members as $member)
                         <option value="{{ $member->id}}">{{$member->nomor_anggota}}</option>
                         @endforeach
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group">
                       <label for="members_id">ISBN</label>
-                      <select class="form-control" name="books_id" style="width: 100%;">
+                      <select class="form-control select2" name="books_id" style="width: 100%;">
                         @foreach ($books as $book)
                         <option value="{{ $book->id}}">{{$book->isbn}}</option>
                         @endforeach

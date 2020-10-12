@@ -11,6 +11,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //validasi data
     protected function validator(array $user)
     {

@@ -15,19 +15,21 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('inventaris')->unique();
+            $table->string('inventaris')->unique();
             $table->date('tanggal_terima')->nullable();
             $table->string('judul');
             $table->string('pengarang');
             $table->string('penerbit')->nullable();
             $table->string('tahun_terbit')->nullable();
             $table->string('semester')->nullable();
-            $table->string('kelas');
+            $table->string('kelas')->nullable();
             $table->string('asal')->nullable();
             $table->string('harga')->nullable();
             $table->string('isbn')->nullable();
             $table->string('callnumber')->nullable();
             $table->string('lokasi')->nullable();
+            $table->string('sampul')->nullable();
+            $table->string('deskripsi')->nullable();
             
             $table->unsignedBigInteger('categories_id');
             $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
