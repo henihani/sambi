@@ -33,8 +33,9 @@ class HomeController extends Controller
        $members = Member::get();
        $transactions = Transaction::get();
        $visitors = Visitor::get();
+       $denda = Transaction::where('denda', '>' ,0)->get();
        
-        return view('layouts.dashboard',compact('books', 'members', 'transactions', 'visitors'));
+        return view('layouts.dashboard',compact('books', 'members', 'transactions', 'visitors','denda'));
     }
 }
 

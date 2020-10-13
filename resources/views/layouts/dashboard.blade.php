@@ -63,13 +63,13 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{$transactions->count()}}</h3>
+              <h3>{{$denda->count()}}</h3>
               <p>Bayar Denda</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="/transaction" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/transactionDenda" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

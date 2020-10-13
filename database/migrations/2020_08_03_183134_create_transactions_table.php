@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali')->nullable();
-            $table->string('denda')->nullable();
+            $table->bigInteger('denda')->nullable();
             $table->enum('status',['Pinjam','Kembali'])->nullable(); 
             $table->unsignedBigInteger('books_id');
             $table->unsignedBigInteger('members_id');

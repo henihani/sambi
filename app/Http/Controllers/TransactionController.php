@@ -45,12 +45,7 @@ class TransactionController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         $transaction = new Transaction([
@@ -86,6 +81,7 @@ class TransactionController extends Controller
         $update = Transaction::findOrFail($id);
         $update->update([
             'denda' => $request->get('denda'),
+            'tanggal_kembali' => $request->get('tanggal_kembali'),
             'status' => $request->get('status')
         ]);
 
@@ -94,6 +90,28 @@ class TransactionController extends Controller
         
     }
 
+    public function transactionDenda()
+    {
+        $transactions = Transaction::where('denda', '>' ,0)->get();
+        return view('layouts.transaction.index',compact('transactions','transactions'));
+    }
+
+    public function denda($id)
+    {
+        $transactions = Transaction::findOrFail($id);
+        return view('layouts.transaction.denda', compact('transactions'));
+    }
+
+    public function bayarDenda(Request $request, $id)
+    {
+        $update = Transaction::findOrFail($id);
+        $update->update([
+            'denda' => $request->get('denda')
+        ]);
+
+        $update->update(); 
+        return redirect('/transaction')->with('update','Pembayaran denda berhasil');
+    }
     
     public function destroy($id)
     {
