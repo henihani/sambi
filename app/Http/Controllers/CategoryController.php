@@ -36,6 +36,11 @@ class CategoryController extends Controller
     
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'kategori' => 'required|string|unique:categories',
+            'nomor_kategori' => 'required|unique:categories',
+        ]);
+
         $category = new Category([
             'kategori' => ucwords($request->get('kategori')),
             'nomor_kategori' => $request->get('nomor_kategori')
@@ -63,6 +68,11 @@ class CategoryController extends Controller
     
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'kategori' => 'required|string|unique:categories',
+            'nomor_kategori' => 'required|unique:categories'
+        ]);
+        
         $update = Category::findOrFail($id);
         $update->update([
             'kategori' => ucwords($request->get('kategori')),

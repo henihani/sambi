@@ -14,24 +14,6 @@ class MemberController extends Controller
         $this->middleware('auth');
     }
     
-    protected function validator(array $user)
-    {
-        return Validator::make($members, [
-            'nomor_anggota' => ['required', 'unique:members'],
-            'nama' => ['required', 'string'],
-            'nomor_identitas' => ['required', 'unique:members'],
-            'jabatan' => ['required', 'string'],
-            'jurusan_gurumapel' => ['required', 'string'],
-            'kelas' => ['required'],
-            'jenis_kelamin' => ['required'],
-            'tempat_lahir' => ['required', 'string'],
-            'tanggal_lahir' => ['required'],
-            'alamat' => ['required', 'string', 'max:255'],
-            'foto' => ['required|image|mimes:jpeg,png,jpg|max:2048']
-            
-            ]);  
-    }
-    
     public function index()
     {
         abort(404);
@@ -58,6 +40,23 @@ class MemberController extends Controller
     
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nomor_anggota' => 'required|unique:members',
+            'nama' => 'required|string',
+            'nomor_identitas' => 'required|unique:members',
+            'jabatan' => 'required|string',
+            'jurusan_gurumapel' => 'required|string',
+            'kelas' => 'required',
+            'jenis_kelamin' => 'required',
+            'tempat_lahir' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'alamat' => 'required|string',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+
+
+
         $request->validate([
             'foto' => 'mimes:jpeg,png,jpg|max:2048',
             ]);

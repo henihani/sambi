@@ -48,6 +48,12 @@ class TransactionController extends Controller
     
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'members_id' => 'required',
+            'books_id' => 'required',
+            'tanggal_pinjam' => 'required|date',
+            'tanggal_kembali' => 'required|date',
+        ]);
         $transaction = new Transaction([
             'members_id' => $request->get('members_id'),
             'books_id' => $request->get('books_id'),

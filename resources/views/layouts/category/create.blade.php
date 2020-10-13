@@ -28,13 +28,24 @@
           <form action="{{ route('category.store') }}" method="POST">
             {{ csrf_field() }}
               <div class="box-body">
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('kategori') ? ' has-error' : '' }}">
                   <label>Kategori</label>
-                  <input type="text" class="form-control" id="kategori" name="kategori" value="{{ old('kategori') }}" placeholder="Masukkan Kategori Buku">
+                  <input type="text" class="form-control" id="kategori" name="kategori" value="{{ old('kategori') }}" placeholder="Masukkan Kategori Buku" required>
+                  @if ($errors->has('kategori'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('kategori') }}</strong>
+                    </span>
+                  @endif
                 </div>
-                <div class="form-group">
+
+                <div class="form-group{{ $errors->has('nomor_kategori') ? ' has-error' : '' }}">
                   <label>Nomor Kategori</label>
-                  <input type="text" class="form-control" id="nomorkategori" name="nomor_kategori" placeholder="Nomor Kategori">
+                  <input type="text" class="form-control" id="nomorkategori" name="nomor_kategori" placeholder="Nomor Kategori" required>
+                  @if ($errors->has('nomor_kategori'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('nomor_kategori') }}</strong>
+                    </span>
+                  @endif
                 </div>
               </div>
               <div class="box-footer">

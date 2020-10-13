@@ -29,29 +29,49 @@
                 <div class="row">
                   <div class="col-md-12">
                     
-                    <div class="form-group">
+                    <div class="form-group{{ $errors->has('tanggal_pinjam') ? ' has-error' : '' }}">
                       <label>Tanggal Pinjam :</label>
-                      <input type="date" class="form-control" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" id="tanggal_pinjam" name="tanggal_pinjam">
+                      <input type="date" class="form-control" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" id="tanggal_pinjam" name="tanggal_pinjam" require>
+                      @if ($errors->has('tanggal_pinjam'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('tanggal_pinjam') }}</strong>
+                        </span>
+                      @endif
                     </div>
-                    <div class="form-group">
+                    <div class="form-group{{ $errors->has('tanggal_kembali') ? ' has-error' : '' }}">
                       <label>Tanggal Kembali :</label>
                       <input type="date" class="form-control" id="tanggal_kembali" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->addDays(7)->toDateString())) }}" name="tanggal_kembali">
+                      @if ($errors->has('tanggal_kembali'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('tanggal_kembali') }}</strong>
+                        </span>
+                      @endif
                     </div>
-                    <div class="form-group">
+                    <div class="form-group{{ $errors->has('nomor_anggota') ? ' has-error' : '' }}">
                       <label for="members_id">Nomor Anggota</label>
                       <select class="form-control select2" name="members_id" style="width: 100%;">
                         @foreach ($members as $member)
                         <option value="{{ $member->id}}">{{$member->nomor_anggota}}</option>
                         @endforeach
                       </select>
+                      @if ($errors->has('nomor_anggota'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('nomor_anggota') }}</strong>
+                        </span>
+                      @endif
                     </div>
-                    <div class="form-group">
+                    <div class="form-group{{ $errors->has('isbn') ? ' has-error' : '' }}">
                       <label for="members_id">ISBN</label>
                       <select class="form-control select2" name="books_id" style="width: 100%;">
                         @foreach ($books as $book)
                         <option value="{{ $book->id}}">{{$book->isbn}}</option>
                         @endforeach
                       </select>
+                      @if ($errors->has('isbn'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('isbn') }}</strong>
+                        </span>
+                      @endif
                     </div>
                     
                   </div>

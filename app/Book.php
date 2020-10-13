@@ -35,7 +35,7 @@ class Book extends Model
     {
         return $this->hasMany('App\Transactions');
     }
-    public function statues()
+    public function statuses()
     {
         return $this->belongsTo('App\Status');
     }

@@ -11,9 +11,10 @@ class PencarianController extends Controller
 {
     public function index()
     {
-        // $books = Book::all();
-        $books = Book::whereNotIn('id', Status::select('books_id')->get())->get();
+        $books = Book::all();
+        //$books = Book::whereNotIn('id', Status::select('books_id')->get())->get();
         return view('layouts.pencarian', compact('books', 'books'));
+        
     }
     public function cari(Request $request)
     {

@@ -47,6 +47,7 @@ Route::get('visitorReport','VisitorController@visitorReport');
 Route::resource('transaction','TransactionController');
 Route::get('transactionReport','TransactionController@transactionReport');
 Route::get('transactionDenda','TransactionController@transactionDenda');
+
 //DENDA
 Route::get('denda/{id}','TransactionController@denda');
 Route::PUT('bayarDenda/{id}','TransactionController@bayarDenda');

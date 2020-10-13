@@ -32,6 +32,11 @@ class VisitorController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'tanggal_kunjungan' => 'required|date',
+            'members_id' => 'required',
+        ]);
+        
         $visitor = new Visitor([
             'tanggal_kunjungan' => $request->get('tanggal_kunjungan'),
             'members_id' => $request->get('members_id')

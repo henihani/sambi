@@ -56,9 +56,24 @@ class BookController extends Controller
     //menyimpan input data
     public function store(Request $request)
     {
-        $request->validate([
+        $this->validate([
+            'inventaris' => 'required|numeric|unique:books',
+            'tanggal_terima' => 'required|date',
+            'judul' => 'required|string',
+            'pengarang' => 'required|string',
+            'penerbit' => 'required|string',
+            'tahun_terbit' => 'required|numeric',
+            'semester' => 'required',
+            'kelas' => 'required',
+            'asal' => 'required|string',
+            'harga' => 'required',
+            'isbn' => 'required',
+            'categories_id' => 'required',
+            'callnumber' => 'required',
+            'lokasi' => 'required|string',
             'sampul' => 'mimes:jpeg,png,jpg|max:2048',
-            ]);
+        ]);
+        
         $imgName = $request->sampul->getClientOriginalName(). '-'. time()
                                      . '.' . $request->sampul->extension();
         $request->sampul->move(public_path('image/books'),$imgName);

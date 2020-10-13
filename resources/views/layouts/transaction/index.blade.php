@@ -91,7 +91,7 @@
                           @if($transaction->status == 'Pinjam')
                             <button class="btn btn-warning btn-xs">Pinjam</button>
                           @else
-                            <label class="btn btn-success btn-xs">Kembali</label>
+                            <label class="btn btn-primary btn-xs">Kembali</label>
                           @endif  
                         </td>
                       </tr> 

@@ -26,25 +26,45 @@
           <form action="{{ route('user.store') }}" method="POST">
             {{ csrf_field() }}
               <div class="box-body">
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('nama') ? ' has-error' : '' }}">
                   <label>Nama</label>
-                  <input type="text" class="form-control" id="nama" name="nama"  placeholder="Masukkan nama petugas">
+                  <input type="text" class="form-control" id="nama" name="nama"  placeholder="Masukkan nama petugas" require>
+                  @if ($errors->has('nama'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('nama') }}</strong>
+                    </span>
+                  @endif
                 </div>
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                   <label>Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email petugas">
+                  <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email petugas" require>
+                  @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                  @endif
                 </div>
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                   <label>Password</label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan paswword">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan paswword" require>
+                  @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                  @endif
                 </div>
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
                   <label>Hak Akses</label>
                   <select name="role" id="" class="form-control">
                     <option value="">Pilih Hak Akses</option>
                     <option value="Petugas">Petugas</option>
                     <option value="Kepala Perpus">Kepala Perpustakaan</option>
                   </select>
+                  @if ($errors->has('role'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('role') }}</strong>
+                    </span>
+                  @endif
                 </div>
               </div>
               <div class="box-footer">
