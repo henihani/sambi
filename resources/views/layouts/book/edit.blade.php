@@ -86,7 +86,11 @@
                 </div>
                 <div class="form-group">
                   <label for="categories_id">Kategori</label>
-                  <input type="text" class="form-control" id="categories_id" name="categories_id" value="{{$book->categories->kategori}}">
+                  <select name="categories_id" class="form-control select2" id="">
+                  @foreach($categories as $cat)
+                  <option value="{{$cat->id}}" {{ $book->categories->id === $cat->id ? 'selected' : '' }}>{{$cat->kategori}}</option>
+                  @endforeach
+                  </select>
                 </div>
                 <div class="form-group">
                   <label>Callnumber</label>

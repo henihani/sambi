@@ -115,7 +115,8 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Book::findOrFail($id);
-        return view('layouts.book.edit', compact('book'));
+        $categories = Category::all();
+        return view('layouts.book.edit', compact('book', 'categories'));
     }
 
     //memperbarui data buku
