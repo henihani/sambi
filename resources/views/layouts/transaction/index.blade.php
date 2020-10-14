@@ -62,7 +62,7 @@
                         <td>{{$transaction->books->isbn}}</td>
                         <td>{{date('d/m/y', strtotime($transaction->tanggal_pinjam))}}</td>
                         <td>{{date('d/m/y', strtotime($transaction->tanggal_kembali))}}</td>
-                        <td>{{$transaction->denda}}</td>
+                        <td>{{ number_format($transaction->denda,0) }}</td>
                         <td>
                           <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">

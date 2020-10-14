@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Transaction;
 use App\Member;
 use App\Book;
+use App\Status;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -63,6 +64,11 @@ class TransactionController extends Controller
         ]);
 
         $transaction->save();
+        $status = new Status([
+            'books_id' => $request->get('books_id'),
+            'transactions_id' => $transaction->id
+        ]);
+        $status->save();
         return redirect('transaction')->with('success','Transaksi baru berhasil ditambahkan!');
         
     }

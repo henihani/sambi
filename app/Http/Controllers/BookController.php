@@ -56,8 +56,8 @@ class BookController extends Controller
     //menyimpan input data
     public function store(Request $request)
     {
-        $this->validate([
-            'inventaris' => 'required|numeric|unique:books',
+        $this->validate($request,[
+            'inventaris' => 'required|unique:books',
             'tanggal_terima' => 'required|date',
             'judul' => 'required|string',
             'pengarang' => 'required|string',

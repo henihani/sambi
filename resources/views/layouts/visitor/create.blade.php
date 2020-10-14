@@ -31,7 +31,7 @@
                 {{ session('success') }}
                 </div>
               @endif
-                <div class="form-group{{ $errors->has('tanggal_kunjungan') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('tanggal_kunjungan') ? ' is-invalid' : '' }}">
                   <label>Tanggal</label>
                   <input type="date" class="form-control" id="tanggal_kunjungan" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}"  name="tanggal_kunjungan">
                   @if ($errors->has('tanggal_kunjungan'))
@@ -40,7 +40,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('nomor_identitas') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('nomor_identitas') ? ' is-invalid' : '' }}">
                   <label for="categories_id">Nomor Identitas</label>
                     <select class="form-control select2" name="members_id" style="width: 100%;">
                       @foreach ($member as $members)

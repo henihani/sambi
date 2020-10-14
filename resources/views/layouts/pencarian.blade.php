@@ -77,6 +77,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Judul</th>
+                                <th>ISBN</th>
                                 <th>Pengarang</th>
                                 <th>Penerbit</th>
                                 <th>Kelas</th>
@@ -91,6 +92,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $book->judul }}</td>
+                                <td>{{ $book->isbn }}</td>
                                 <td>{{ $book->pengarang }}</td>
                                 <td>{{ $book->penerbit }}</td>
                                 <td>{{ $book->kelas }}</td>
@@ -107,6 +109,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Judul</th>
+                                <th>ISBN</th>
                                 <th>Pengarang</th>
                                 <th>Penerbit</th>
                                 <th>Kelas</th>

@@ -29,7 +29,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     
-                    <div class="form-group{{ $errors->has('tanggal_pinjam') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('tanggal_pinjam') ? ' is-invalid' : '' }}">
                       <label>Tanggal Pinjam :</label>
                       <input type="date" class="form-control" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" id="tanggal_pinjam" name="tanggal_pinjam" require>
                       @if ($errors->has('tanggal_pinjam'))
@@ -38,7 +38,7 @@
                         </span>
                       @endif
                     </div>
-                    <div class="form-group{{ $errors->has('tanggal_kembali') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('tanggal_kembali') ? ' is-invalid' : '' }}">
                       <label>Tanggal Kembali :</label>
                       <input type="date" class="form-control" id="tanggal_kembali" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->addDays(7)->toDateString())) }}" name="tanggal_kembali">
                       @if ($errors->has('tanggal_kembali'))
@@ -47,7 +47,7 @@
                         </span>
                       @endif
                     </div>
-                    <div class="form-group{{ $errors->has('nomor_anggota') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('nomor_anggota') ? ' is-invalid' : '' }}">
                       <label for="members_id">Nomor Anggota</label>
                       <select class="form-control select2" name="members_id" style="width: 100%;">
                         @foreach ($members as $member)
@@ -60,7 +60,7 @@
                         </span>
                       @endif
                     </div>
-                    <div class="form-group{{ $errors->has('isbn') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('isbn') ? ' is-invalid' : '' }}">
                       <label for="members_id">ISBN</label>
                       <select class="form-control select2" name="books_id" style="width: 100%;">
                         @foreach ($books as $book)

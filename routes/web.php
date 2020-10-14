@@ -70,6 +70,6 @@ Route::get('edit', function () {
 Route::get('pencarianbuku', function () {
     return view('layouts.pencarianbuku');
 });
-Route::get('pengunjung', function () {
-    return view('layouts.pengunjung');
+Route::get('barcode', function () {
+    return view('layouts.barcode');
 });

@@ -28,7 +28,7 @@
               <div class="box-body">
               <div class="row">
               <div class="col-md-12">
-                <div class="form-group{{ $errors->has('nomor_anggota') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('nomor_anggota') ? ' is-invalid' : '' }}">
                   <label>Nomor Anggota</label>
                   <input type="text" class="form-control" name="nomor_anggota"  placeholder="Masukkan Nomor Anggota" required>
                   @if ($errors->has('nomor_anggota'))
@@ -37,7 +37,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('nama') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('nama') ? ' is-invalid' : '' }}">
                   <label>Nama </label>
                   <input type="text" class="form-control" name="nama" placeholder="Masukkan nama Anggota" required>
                   @if ($errors->has('nama'))
@@ -46,7 +46,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('nomor_identitas') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('nomor_identitas') ? ' is-invalid' : '' }}">
                   <label>NIK/NISN</label>
                   <input type="text" class="form-control" name="nomor_identitas" placeholder="Masukkan nomor NIK/NISN" required>
                   @if ($errors->has('nomor_identitas'))
@@ -55,7 +55,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('jabatan') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('jabatan') ? ' is-invalid' : '' }}">
                   <label>Jabatan</label>
                   <select class="form-control" name="jabatan" style="width: 100%;">
                     <option selected="selected" value="Guru">Guru</option>
@@ -67,7 +67,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('jurusan_gurumapel') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('jurusan_gurumapel') ? ' is-invalid' : '' }}">
                   <label>Jurusan / Guru Mapel</label>
                   <input type="text" class="form-control" name="jurusan_gurumapel" placeholder="Masukkan jurusan / guru mapel" required>
                   @if ($errors->has('jurusan_gurumapel'))
@@ -76,7 +76,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('kelas') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('kelas') ? ' is-invalid' : '' }}">
                   <label>Kelas</label>
                   <select class="form-control" name="kelas" style="width: 100%;">
                     <option selected="selected" value="-">-</option>
@@ -90,7 +90,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('jenis_kelamin') ? ' is-invalid' : '' }}">
                   <label>Jenis Kelamin</label>
                   <select class="form-control" name="jenis_kelamin" style="width: 100%;">
                     <option selected="selected" value="laki-laki">Laki-laki</option>
@@ -102,7 +102,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('tempat_lahir') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('tempat_lahir') ? ' is-invalid' : '' }}">
                   <label>Tempat Lahir</label>
                   <input type="text" class="form-control" name="tempat_lahir" placeholder="Masukkan tempat lahir" required>
                   @if ($errors->has('tempat_lahir'))
@@ -111,7 +111,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('tanggal_lahir') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('tanggal_lahir') ? ' is-invalid' : '' }}">
                   <label>Tanggal Lahir</label>
                   <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
                   @if ($errors->has('tanggal_lahir'))
@@ -120,7 +120,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('alamat') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('alamat') ? ' is-invalid' : '' }}">
                   <label>Alamat</label>
                   <input type="text" class="form-control" name="alamat" placeholder="Masukkan alamat" required>
                   @if ($errors->has('alamat'))
@@ -129,7 +129,7 @@
                     </span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('foto') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('foto') ? ' is-invalid' : '' }}">
                   <label for="foto" >Foto</label>
                   <input type="file" class="uploads form-control" style="margin-top: 10px;" name="foto" required>
                   @if ($errors->has('foto'))

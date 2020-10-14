@@ -37,8 +37,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'kategori' => 'required|string|unique:categories',
-            'nomor_kategori' => 'required|unique:categories',
+            'kategori' => 'required',
+            'nomor_kategori' => 'required',
         ]);
 
         $category = new Category([
@@ -54,7 +54,7 @@ class CategoryController extends Controller
     
     public function show(Category $category)
     {
-        //
+        
     }
 
     
@@ -70,7 +70,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'kategori' => 'required|string|unique:categories',
-            'nomor_kategori' => 'required|unique:categories'
+            'nomor_kategori' => 'required|unique:categories',
         ]);
         
         $update = Category::findOrFail($id);
@@ -82,12 +82,7 @@ class CategoryController extends Controller
        return redirect('category')->with('update','Data kategori berhasil diperbarui!');   
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         $del = Category::find($id);

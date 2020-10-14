@@ -28,7 +28,7 @@
           <form action="{{ route('category.store') }}" method="POST">
             {{ csrf_field() }}
               <div class="box-body">
-                <div class="form-group{{ $errors->has('kategori') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('kategori') ? ' is-invalid' : '' }}">
                   <label>Kategori</label>
                   <input type="text" class="form-control" id="kategori" name="kategori" value="{{ old('kategori') }}" placeholder="Masukkan Kategori Buku" required>
                   @if ($errors->has('kategori'))
@@ -38,7 +38,7 @@
                   @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('nomor_kategori') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('nomor_kategori') ? ' is-invalid' : '' }}">
                   <label>Nomor Kategori</label>
                   <input type="text" class="form-control" id="nomorkategori" name="nomor_kategori" placeholder="Nomor Kategori" required>
                   @if ($errors->has('nomor_kategori'))
