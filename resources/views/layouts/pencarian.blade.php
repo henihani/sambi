@@ -77,11 +77,11 @@
                             <tr>
                                 <th>No</th>
                                 <th>Judul</th>
-                                <th>ISBN</th>
                                 <th>Pengarang</th>
                                 <th>Penerbit</th>
                                 <th>Kelas</th>
                                 <th>Semester</th>
+                                <th>ISBN</th>
                                 <th>Sampul</th>
                                 <th>Deskripsi</th>
                                 <th>Status</th>
@@ -92,11 +92,11 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $book->judul }}</td>
-                                <td>{{ $book->isbn }}</td>
                                 <td>{{ $book->pengarang }}</td>
                                 <td>{{ $book->penerbit }}</td>
                                 <td>{{ $book->kelas }}</td>
                                 <td>{{ $book->semester }}</td>
+                                <td>{{ $book->isbn }}</td>
                                 <td><img width="120" height="160" src="/image/books/{{ $book->sampul }}"> </td>
                                 <td>{{ $book->deskripsi }}</td>
                                 <td>{{ \App\Status::where('books_id', $book->id)->exists() ? 'Tidak tersedia' : 'Tersedia'}}
@@ -109,11 +109,11 @@
                             <tr>
                                 <th>No</th>
                                 <th>Judul</th>
-                                <th>ISBN</th>
                                 <th>Pengarang</th>
                                 <th>Penerbit</th>
                                 <th>Kelas</th>
                                 <th>Semester</th>
+                                <th>ISBN</th>
                                 <th>Sampul</th>
                                 <th>Deskripsi</th>
                                 <th>Status</th>

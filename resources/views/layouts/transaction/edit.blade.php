@@ -27,9 +27,14 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-12">
-                  <div class="form-group">
+                  <div class="form-group{{ $errors->has('tanggal_kembali') ? ' is-invalid' : '' }}">
                     <label>Pengembalian</label>
                     <input type="date" class="form-control" name="tanggal_kembali" value="{{$transactions->tanggal_kembali}}">
+                    @if ($errors->has('tanggal_kembali'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('tanggal_kembali') }}</strong>
+                    </span>
+                    @endif
                   </div>
                   <div class="form-group">
                     <label>Status</label>
@@ -38,9 +43,14 @@
                       <option value="Pinjam" {{$transactions->status === "Pinjam" ? "selected" : ""}}>Pinjam</option>
                     </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group{{ $errors->has('denda') ? ' is-invalid' : '' }}">
                     <label>Denda</label>
                     <input type="number" class="form-control" name="denda" value="{{$transactions->denda}}">
+                    @if ($errors->has('denda'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('denda') }}</strong>
+                    </span>
+                    @endif
                   </div>  
                 </div>
               </div>

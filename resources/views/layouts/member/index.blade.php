@@ -64,6 +64,7 @@
                       <th>Nomor Anggota</th>
                       <th>Jurusan</th>
                       <th>Kelas</th>
+                      <th>Jabatan</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -75,6 +76,7 @@
                       <td>{{$member->nomor_anggota}}</td>
                       <td>{{$member->jurusan_gurumapel}}</td>
                       <td>{{$member->kelas}}</td>
+                      <td>{{$member->jabatan}}</td>
                       <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -110,6 +112,7 @@
                       <th>Nomor Anggota</th>
                       <th>Jurusan</th>
                       <th>Kelas</th>
+                      <th>Jabatan</th>
                       <th>Aksi</th>
                     </tr>
                   </tfoot>

@@ -37,9 +37,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('tanggal_terima') ? ' is-invalid' : '' }}">
                   <label>Tanggal Terima :</label>
-                  <div class="input-group date">
-                    <input type="date" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" class="form-control pull-right" id="tanggal_terima" name="tanggal_terima" required>
-                  </div>
+                  <input type="date" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" class="form-control" id="tanggal_terima" name="tanggal_terima" required>
                   @if ($errors->has('tanggal_terima'))
                     <span class="help-block">
                         <strong>{{ $errors->first('tanggal_terima') }}</strong>

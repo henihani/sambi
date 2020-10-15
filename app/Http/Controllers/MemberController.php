@@ -54,12 +54,6 @@ class MemberController extends Controller
             'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-
-
-
-        $request->validate([
-            'foto' => 'mimes:jpeg,png,jpg|max:2048',
-            ]);
         $imgName = $request->foto->getClientOriginalName(). '-'. time()
                                      . '.' . $request->foto->extension();
         $request->foto->move(public_path('image/members'),$imgName);
@@ -112,6 +106,20 @@ class MemberController extends Controller
     
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nomor_anggota' => 'required|unique:members,nomor_anggota,'.$id,
+            'nama' => 'required|string',
+            'nomor_identitas' => 'required|unique:members,nomor_identitas,'.$id,
+            'jabatan' => 'required|string',
+            'jurusan_gurumapel' => 'required|string',
+            'kelas' => 'required',
+            'jenis_kelamin' => 'required',
+            'tempat_lahir' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'alamat' => 'required|string',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
         $update = Member::findOrFail($id);
         
         if ($request->has('foto')) {

@@ -15,28 +15,7 @@ class BookController extends Controller
     {
         $this->middleware('auth');
     }
-    //validasi data
-    protected function validator(array $books)
-    {
-        return Validator::make($books,[
-        'inventaris' => ['required','unique:books'],
-        'tanggal_terima' => ['required'],
-        'judul' => ['required'],
-        'pengarang' => ['required'],
-        'penerbit' => ['required'],
-        'tahun_terbit' => ['required','numeric'],
-        'semester' => ['required'],
-        'kelas' => ['required'],
-        'asal' => ['required'],
-        'harga' => ['required'],
-        'isbn' => ['required'],
-        'categories_id' => ['required'],
-        'callnumber' => ['required'],
-        'lokasi' => ['required']
-        ]);
-
-    }
-
+    
     //laman utama pada data buku
     public function index()
     {
@@ -122,6 +101,24 @@ class BookController extends Controller
     //memperbarui data buku
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'inventaris' => 'required|unique:books,inventaris,'.$id,
+            'tanggal_terima' => 'required|date',
+            'judul' => 'required|string',
+            'pengarang' => 'required|string',
+            'penerbit' => 'required|string',
+            'tahun_terbit' => 'required|numeric',
+            'semester' => 'required',
+            'kelas' => 'required',
+            'asal' => 'required|string',
+            'harga' => 'required',
+            'isbn' => 'required',
+            'categories_id' => 'required',
+            'callnumber' => 'required',
+            'lokasi' => 'required|string',
+            'deskripsi' => 'required|max:1406',
+            'sampul' => 'mimes:jpeg,png,jpg|max:2048',
+        ]);
         $update = Book::findOrFail($id);
         
         if ($request->has('sampul')) {

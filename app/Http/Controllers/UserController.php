@@ -25,15 +25,7 @@ class UserController extends Controller
     // {
     //     $this->middleware('guest');
     // }
-    protected function validator(array $user)
-    {
-        return Validator::make($user, [
-            'nama' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'gambar' => ['required', 'string', 'max:255','nullable:users'],
-        ]);
-    }
+    
     
     public function index()
     {
@@ -49,7 +41,11 @@ class UserController extends Controller
     
     public function store(Request $request)
     {
-        
+        $this->validate($request, [
+            'nama' => 'required|string',
+            'email'    => 'required|string|email',
+            'password' => 'required|min:8|string',
+        ]);
         $user = new User([
             'nama' => ucwords($request->get('nama')),
             'email' => $request->get('email'),
@@ -79,7 +75,7 @@ class UserController extends Controller
         $this->validate($request, [
             'nama' => 'required|string',
             'email'    => 'required|string|email',
-            'password' => 'required|confirmed|min:6|string',
+            'password' => 'required|min:8|string',
         ]);
 
         $update = User::findOrFail($id);

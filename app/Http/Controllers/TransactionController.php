@@ -90,6 +90,11 @@ class TransactionController extends Controller
     
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'denda' => 'required',
+            'tanggal_kembali' => 'required|date',
+        ]);
+
         $update = Transaction::findOrFail($id);
         $update->update([
             'denda' => $request->get('denda'),

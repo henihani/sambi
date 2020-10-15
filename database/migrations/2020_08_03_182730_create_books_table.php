@@ -29,7 +29,7 @@ class CreateBooksTable extends Migration
             $table->string('callnumber')->nullable();
             $table->string('lokasi')->nullable();
             $table->string('sampul')->nullable();
-            $table->string('deskripsi')->nullable();
+            $table->text('deskripsi')->nullable();
             
             $table->unsignedBigInteger('categories_id');
             $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
