@@ -25,7 +25,7 @@
               <h3 class="box-title">Perbarui Data Buku {{$book->judul}}</h3>
             </div>
             <!-- form -->
-            <form action="{{ route('book.update', $book->id) }}" method="POST">
+            <form action="{{ route('book.update', $book->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             {{ method_field('PUT') }}
               <div class="box-body">
@@ -108,6 +108,7 @@
                   <label>Sampul</label>
                   <img width="120" height="160" src="/image/books/{{ $book->sampul }}"> 
                   <input type="file" class="form-control" id="sampul" name="sampul" >
+                    <input type="hidden" name="sampulbackup" value="{{$book->sampul}}">
                 </div>
                   
               </div>

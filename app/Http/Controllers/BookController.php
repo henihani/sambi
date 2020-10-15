@@ -123,6 +123,17 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $update = Book::findOrFail($id);
+        
+        if ($request->has('sampul')) {
+            $imgName = $request->sampul->getClientOriginalName(). '-'. time()
+                                     . '.' . $request->sampul->extension();
+            $request->sampul->move(public_path('image/books'),$imgName);
+        }
+        else {
+            $imgName = $request->get('sampulbackup');
+        }
+
+        $update = Book::findOrFail($id);
         $update->update([
             'inventaris' => $request->get('inventaris'),
             'tanggal_terima' => $request->get('tanggal_terima'),
@@ -137,8 +148,11 @@ class BookController extends Controller
             'isbn' => $request->get('isbn'),
             'categories_id' => $request->get('categories_id'),
             'callnumber' => $request->get('callnumber'),
-            'lokasi' => ucwords($request->get('lokasi'))
+            'lokasi' => ucwords($request->get('lokasi')),
+            'deskripsi' => $request->get('deskripsi'),
+            'sampul' => $imgName
             ]);
+            
        $update->update();     
        return redirect('book')->with('update','Data buku berhasil diperbarui!');
     }

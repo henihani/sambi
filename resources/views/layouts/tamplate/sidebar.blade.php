@@ -52,6 +52,7 @@
             <li><a href="/category"><i class="fa fa-circle-o"></i> Kategori</a></li>
           </ul>  
         </li>
+        
         <li class="{{ setActive(['visitor*']) }}">
           <a href="/visitor">
             <i class="fa fa-users"></i>

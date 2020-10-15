@@ -29,7 +29,7 @@
               <div class="box-body">
                 <div class="form-group{{ $errors->has('kategori') ? ' is-invalid' : '' }}">
                   <label>Kategori</label>
-                  <input type="text" class="form-control" id="kategori" name="kategori" value="{{ $category->kategori }}">
+                  <input type="text" class="form-control" id="kategori" name="kategori" value="{{ $category->kategori }}" require>
                   @if ($errors->has('kategori'))
                     <span class="help-block">
                         <strong>{{ $errors->first('kategori') }}</strong>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('nomor_kategori') ? ' is-invalid' : '' }}">
                   <label>Nomor Kategori</label>
-                  <input type="text" class="form-control" id="nomor_kategori" name="nomor_kategori" value="{{ $category->nomor_kategori }}" >
+                  <input type="text" class="form-control" id="nomor_kategori" name="nomor_kategori" value="{{ $category->nomor_kategori }}" require>
                   @if ($errors->has('nomor_kategori'))
                     <span class="help-block">
                         <strong>{{ $errors->first('nomor_kategori') }}</strong>

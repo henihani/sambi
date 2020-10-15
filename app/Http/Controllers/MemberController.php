@@ -113,10 +113,15 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $update = Member::findOrFail($id);
-
-        $imgName = $request->foto->getClientOriginalName(). '-'. time()
+        
+        if ($request->has('foto')) {
+            $imgName = $request->foto->getClientOriginalName(). '-'. time()
                                      . '.' . $request->foto->extension();
-        $request->foto->move(public_path('image/members'),$imgName);
+            $request->foto->move(public_path('image/members'),$imgName);
+        }
+        else {
+            $imgName = $request->get('fotobackup');
+        }
         
         $update = Member::findOrFail($id);
         $update->update([
@@ -134,6 +139,9 @@ class MemberController extends Controller
         ]);
 
         $update->update(); 
+
+        
+
         if ($update ->jabatan =='Siswa'){
            return redirect('/member/siswa')->with('update','Anggota baru berhasil ditambahkan!');
         }else{

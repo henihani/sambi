@@ -69,8 +69,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'kategori' => 'required|string|unique:categories',
-            'nomor_kategori' => 'required|unique:categories',
+            'kategori' => 'required|string|unique:categories,kategori,'.$id,
+            'nomor_kategori' => 'required|unique:categories,nomor_kategori,'.$id,
         ]);
         
         $update = Category::findOrFail($id);

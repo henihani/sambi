@@ -82,6 +82,7 @@
                     <label for="foto">Foto</label>
                     <img width="120px" height="160" src="/image/members/{{ $members->foto }}"> 
                     <input type="file" class="form-control" name="foto" >
+                    <input type="hidden" name="fotobackup" value="{{$members->foto}}">
                   </div>  
                 </div>
               </div>
