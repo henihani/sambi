@@ -117,7 +117,7 @@ class BookController extends Controller
             'callnumber' => 'required',
             'lokasi' => 'required|string',
             'deskripsi' => 'required|max:1406',
-            'sampul' => 'mimes:jpeg,png,jpg|max:2048',
+            'sampul' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
         $update = Book::findOrFail($id);
         

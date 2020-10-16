@@ -58,18 +58,32 @@ Route::resource('card','CardController');
 Route::get('/pencarian', 'PencarianController@index');
 Route::get('/pencarian/cari', 'PencarianController@cari');
 
+//LAPORAN
+Route::get('/cetakTransaksi', 'LaporanController@cetakTransaksi');
+Route::get('/laporanTransaksi', 'LaporanController@laporanTransaksi');
+Route::get('/laporanTransaksi/pdf', 'LaporanController@transaksiPdf');
+Route::get('/cetakBuku', 'LaporanController@cetakBuku');
+Route::get('/laporanBuku', 'LaporanController@laporanBuku');
+Route::get('/laporanBuku/pdf', 'LaporanController@bukuPdf');
+Route::get('/cetakAnggota', 'LaporanController@cetakAnggota');
+Route::get('/laporanAnggota', 'LaporanController@laporanAnggota');
+Route::get('/laporanAnggota/pdf', 'LaporanController@anggotaPdf');
+Route::get('/cetakPengunjung', 'LaporanController@cetakPengunjung');
+Route::get('/laporanPengunjung', 'LaporanController@laporanPengunjung');
+Route::get('/laporanPengunjung/pdf', 'LaporanController@pengunjungPdf');
 
 
 
 
 
-Route::get('edit', function () {
-    return view('auth.edit');
-});
 
-Route::get('pencarianbuku', function () {
-    return view('layouts.pencarianbuku');
-});
+
+
+Route::get('/cetak', 'PdfController@cetak');
+Route::get('/pdf', 'PdfController@index');
+Route::get('/pdf/cetak_pdf', 'PdfController@cetak_pdf');
+
+
 Route::get('barcode', function () {
     return view('layouts.barcode');
 });

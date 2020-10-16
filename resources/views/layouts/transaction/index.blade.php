@@ -72,7 +72,9 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                               <li><a href="{{route('transaction.show', $transaction->id)}}"><i class="fa fa-folder-open">&nbsp; Detail</i></a></li>
+                              @if ($transaction->status == 'Pinjam')
                               <li><a href="{{ route('transaction.edit',$transaction->id) }}"><i class="fa fa-inbox">&nbsp; Pengembalian</i></a></li>
+                              @endif
                               <li><a href="{{ url('denda',$transaction->id) }}"><i class="fa fa-inbox">&nbsp; Denda</i></a></li>
                               <li class="divider"></li>
                               <li>

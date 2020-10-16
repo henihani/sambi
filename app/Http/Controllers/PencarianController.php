@@ -21,16 +21,17 @@ class PencarianController extends Controller
         // menangkap data pencarian
         $cari = $request->cari;
 
-        // mengambil data dari table pegawai sesuai pencarian data
+        // mengambil data dari table books sesuai pencarian data
         $books = DB::table('books')
             ->where('pengarang', 'like', "%" . $cari . "%")
             ->orWhere('judul', 'like', "%" . $cari . "%")
             ->orWhere('penerbit', 'like', "%" . $cari . "%")
             ->orWhere('kelas', 'like', "%" . $cari . "%")
             ->orWhere('semester', 'like', "%" . $cari . "%")
+            ->orWhere('isbn', 'like', "%" . $cari . "%")
             ->get();
 
-        // mengirim data pegawai ke view index
+        // mengirim data books ke view index
         return view('layouts.pencarian', ['books' => $books]);
     }
 }

@@ -7,7 +7,7 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
       <section class="content-header">
-        <h1>Edit Data Anggota</h1>
+        <h1>Edit Pengembalian</h1>
       </section>
     </div>
   </div>
@@ -18,7 +18,7 @@
       <div class="col-md-6">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Edit Data Anggota</h3>
+            <h3 class="box-title">Pengembalian</h3>
           </div>
           <!-- form start -->
           <form action="{{ route('transaction.update',$transactions->id) }}" method="POST">
@@ -36,16 +36,16 @@
                     </span>
                     @endif
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label>Status</label>
                     <select class="form-control" name="status" style="width: 100%;">
                       <option value ="Kembali" selected="selected" {{$transactions->status === "Kembali" ? "selected" : ""}}>Sudah Kembali</option>
                       <option value="Pinjam" {{$transactions->status === "Pinjam" ? "selected" : ""}}>Pinjam</option>
                     </select>
-                  </div>
+                  </div> --}}
                   <div class="form-group{{ $errors->has('denda') ? ' is-invalid' : '' }}">
                     <label>Denda</label>
-                    <input type="number" class="form-control" name="denda" value="{{$transactions->denda}}">
+                    <input type="number" class="form-control" name="denda" value="{{ number_format($transactions->denda,0) }}">
                     @if ($errors->has('denda'))
                     <span class="help-block">
                         <strong>{{ $errors->first('denda') }}</strong>

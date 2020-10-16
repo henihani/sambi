@@ -14,19 +14,8 @@ class TransactionController extends Controller
     {
         $this->middleware('auth');
     }
-    protected function validator(array $user)
-    {
-        return Validator::make($transaction, [
-            'tanggal_pinjam' => ['required'],
-            'tanggal_kembali' => ['required'],
-            'denda' => ['required'],
-            'tahun_ajaran' => ['required'],
-            'semester' => ['required'],
-            'members_id' => ['required','string'],
-            'books_id' => ['required','string'],
-            'status' => ['required']
-            ]);  
-    }
+    
+    
     public function index()
     {
         $transactions = Transaction::all();
@@ -84,6 +73,9 @@ class TransactionController extends Controller
     public function edit($id)
     {
         $transactions = Transaction::findOrFail($id);
+        if ($transactions->status !== 'Pinjam') {
+            abort(403);
+        }
         return view('layouts.transaction.edit', compact('transactions'));
     }
 
@@ -91,18 +83,21 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'denda' => 'required',
             'tanggal_kembali' => 'required|date',
         ]);
 
         $update = Transaction::findOrFail($id);
+
         $update->update([
             'denda' => $request->get('denda'),
             'tanggal_kembali' => $request->get('tanggal_kembali'),
-            'status' => $request->get('status')
+            'status' => 'Kembali'
         ]);
 
-        $update->update(); 
+        $statusDel = Status::where('transactions_id', $update->id)->first();
+
+        $update->update();
+        $statusDel->delete();
         return redirect('/transaction')->with('update','Pengembalian buku berhasil');
         
     }
@@ -134,7 +129,7 @@ class TransactionController extends Controller
     {
         $del = Transaction::find($id);
         $del->delete();
-        return back()->with('delete', 'Data buku berhasil dihapus');
+        return back()->with('delete', 'Data transaksi berhasil dihapus');
     }
 
     //LAPORAN

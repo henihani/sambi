@@ -1,95 +1,102 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Transaction;
+use App\Member;
+use App\Book;
+use App\Status;
+use App\Visitor;
 
+use PDF;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
+    //LAPORAN TRANSACTION
+    
+    public function cetakTransaksi()
+    {
+        $transactions = Transaction::all();
+        return view('layouts.laporan.cetaktransaksi',compact('transactions','transactions'));
+    }
+    public function laporanTransaksi()
+    {
+        return view ('layouts.laporan.laporanTransaction');
+    }
+
+    public function transaksiPdf(Request $request)
+    {
+        $transactions = Transaction::all();
+    	$pdf = PDF::loadview('layouts.laporan.cetaktransaksi',compact('transactions','transactions'))->setPaper('a4', 'potrait');
+    	return $pdf->download('laporan_peminjaman_'.date('Y-m-d_H-i-s').'.pdf');
+    }
+
+    //LAPORAN BUKU
+    public function cetakBuku()
+    {
+        $books = Book::all();
+        return view ('layouts.laporan.cetakbuku',compact('books','books'));
+    }
+    
     public function laporanBuku()
     {
-        return view('layouts.laporan.book');
+        return view ('layouts.laporan.laporanBuku');
     }
-
-    public function laporanMember()
+    
+    public function bukuPdf(Request $request)
     {
-        return view ('layouts.laporan.member');
+        $books = Book::all();
+    	$pdf = PDF::loadview('layouts.laporan.cetakbuku',compact('books','books'))->setPaper('a4', 'landscape');
+    	return $pdf->download('laporan_buku_'.date('Y-m-d_H-i-s').'.pdf');
+    
     }
 
-    public function laporanVisitor()
+    //LAPORAN ANGGOTA
+    public function cetakAnggota()
     {
-        return view ('layouts.laporan.visitor');
+        $members = Member::all();
+        return view('layouts.laporan.cetakanggota', compact('members','members'));
     }
-
-    public function laporanTransaction()
+    
+    public function laporanAnggota()
     {
-        return view ('layouts.laporan.transaction');
+        return view ('layouts.laporan.laporanAnggota');
     }
-
-
-    public function create()
+    
+    public function anggotaPdf(Request $request)
     {
-        //
+        $members = Member::all();
+    	$pdf = PDF::loadview('layouts.laporan.cetakanggota',compact('members','members'))->setPaper('a4', 'landscape');
+    	return $pdf->download('laporan_Anggota_'.date('Y-m-d_H-i-s').'.pdf');
+    
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    //LAPORAN PENGUNJUNG
+    public function cetakPengunjung()
     {
-        //
+        $visitors = Visitor ::all();
+        return view('layouts.laporan.cetakpengunjung', compact('visitors','visitors'));
+    }
+    
+    public function laporanPengunjung()
+    {
+        return view ('layouts.laporan.laporanPengunjung');
+    }
+    
+    public function pengunjungPdf(Request $request)
+    {
+        $visitors = Visitor::all();
+    	$pdf = PDF::loadview('layouts.laporan.cetakpengunjung',compact('visitors','visitors'))->setPaper('a4', 'potrait');
+    	return $pdf->download('laporan_Pengunjung_'.date('Y-m-d_H-i-s').'.pdf');
+    
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+   
+    
 }

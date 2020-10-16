@@ -36,7 +36,7 @@
                     <tr>
                       <th>No</th>
                       <th>Tanggal Kunjungan</th>
-                      <th>Nomor Identitas</th>
+                      <th>Nomor Anggota</th>
                       <th>Nama</th>
                       <th>Aksi</th>
                     </tr>
@@ -46,7 +46,7 @@
                       <tr>
                         <td>{{ $loop->iteration}}</td>
                         <td>{{ date('d/m/y', strtotime($visitor->tanggal_kunjungan))}}</td>
-                        <td>{{ $visitor->members->nomor_identitas}}</td>
+                        <td>{{ $visitor->members->nomor_anggota}}</td>
                         <td>{{ $visitor->members->nama}}</td>
                         <td>
                           <div class="btn-group">

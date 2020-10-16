@@ -34,9 +34,9 @@
             </span>
           </a>
           <ul class="{{ setShow(['member/siswa*', 'member/guru*', 'card*']) }} treeview-menu">
-            <li><a class="nav-link {{ setActive(['member/siswa*']) }} " href="/member/siswa"><i class="fa fa-circle-o"></i> Siswa</a></li>
-            <li><a class="{{ setActive(['member/guru*']) }}" href="/member/guru"><i class="fa fa-circle-o"></i> Guru</a></li>
-            <li><a class="{{ setActive(['card*']) }}" href="/card"><i class="fa fa-circle-o"></i>Cetak Kartu Anggota</a></li>
+            <li class="{{ setActive(['member/siswa*']) }} "><a href="/member/siswa"><i class="fa fa-circle-o"></i> Siswa</a></li>
+            <li class="{{ setActive(['member/guru*']) }}" ><a href="/member/guru"><i class="fa fa-circle-o"></i> Guru</a></li>
+            <li class="{{ setActive(['card*']) }}"><a href="/card"><i class="fa fa-circle-o"></i>Cetak Kartu Anggota</a></li>
           </ul>
         </li>
         <li class="{{ setActive(['book*', 'category*']) }} treeview">
@@ -48,8 +48,8 @@
             </span>
           </a>
           <ul class="{{ setShow(['book*', 'category*']) }} treeview-menu">
-            <li><a class="{{ setActive(['book*']) }}" href="/book"><i class="fa fa-circle-o"></i> Data Buku</a></li>
-            <li><a href="/category"><i class="fa fa-circle-o"></i> Kategori</a></li>
+            <li class="{{ setActive(['book*']) }}"><a href="/book"><i class="fa fa-circle-o"></i> Data Buku</a></li>
+            <li class="{{ setActive(['category*']) }}"><a href="/category"><i class="fa fa-circle-o"></i> Kategori</a></li>
           </ul>  
         </li>
         
@@ -73,7 +73,7 @@
           </a>
         </li>
         @endif
-        <li class="treeview">
+        <li class="{{ setActive(['laporanTransaksi*', 'laporanBuku*', 'laporanAnggota*', 'laporanPengunjung*']) }} treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Laporan</span>
@@ -81,11 +81,11 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="{{ setShow(['transactionReport*', 'bookReport*', 'memberReport*', 'visitorReport*']) }} treeview-menu">
-            <li><a href="/transactionReport"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
-            <li><a href="/bookReport"><i class="fa fa-circle-o"></i> Buku</a></li>
-            <li><a href="/memberReport"><i class="fa fa-circle-o"></i> Anggota</a></li>
-            <li><a href="/visitorReport"><i class="fa fa-circle-o"></i> Pengunjung</a></li>
+          <ul class="{{ setShow(['laporanTransaksi*', 'laporanBuku*', 'laporanAnggota*', 'laporanPengunjung*']) }} treeview-menu">
+            <li class="{{ setActive(['laporanTransaksi*']) }}"><a href="/laporanTransaksi"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
+            <li class="{{ setActive(['laporanBuku*']) }}"><a href="/laporanBuku"><i class="fa fa-circle-o"></i> Buku</a></li>
+            <li class="{{ setActive(['laporanAnggota*']) }}"><a href="/laporanAnggota"><i class="fa fa-circle-o"></i> Anggota</a></li>
+            <li class="{{ setActive(['laporanPengunjung*']) }}"><a href="/laporanPengunjung"><i class="fa fa-circle-o"></i> Pengunjung</a></li>
           </ul>
         </li>
       </ul>

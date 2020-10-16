@@ -13,13 +13,7 @@ class CategoryController extends Controller
     {
         $this->middleware('auth');
     }
-    protected function validator(array $user)
-    {
-        return Validator::make($category, [
-            'kategori' => ['required', 'string', 'max:2000'],
-            'nomor_kategori' => ['required', 'string', 'max:255', 'unique:categories']
-        ]);
-    }
+    
     public function index()
     {
         

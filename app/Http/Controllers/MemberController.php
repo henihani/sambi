@@ -117,7 +117,7 @@ class MemberController extends Controller
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required|string',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $update = Member::findOrFail($id);
